@@ -14,3 +14,6 @@ if __name__ == "__main__":
     print(s.runningSum([1, 2, 3, 4]))
     print(s.runningSum([1, 1, 1, 1, 1]))
     print(s.runningSum([3, 1, 2, 10, 1]))
+
+    print("Time complexity: O(n)")
+    print("Space complexity: O(1)")

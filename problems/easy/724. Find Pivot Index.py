@@ -44,3 +44,6 @@ if __name__ == "__main__":
     et = time.time()
     elapsed_time = et - st
     print('Execution time:', elapsed_time, 'seconds')
+
+    print("Time complexity: O(n)")
+    print("Space complexity: O(1)")

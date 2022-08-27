@@ -34,3 +34,6 @@ if __name__ == "__main__":
     print(s.findLeastNumOfUniqueInts([5, 5, 4], 1))
     print(s.findLeastNumOfUniqueInts([5, 5, 4], 25))
     print(s.findLeastNumOfUniqueInts([4, 3, 1, 1, 3, 3, 2], 3))
+
+    print("Time complexity: O(nlog(n))")
+    print("Space complexity: O(n)")
