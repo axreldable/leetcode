@@ -1,20 +1,40 @@
-#python3
+# python3
 import sys
+
 
 class StackWithMax():
     def __init__(self):
         self.__stack = []
+        self.smax = None
 
     def Push(self, a):
-        self.__stack.append(a)
+        if len(self.__stack) == 0:
+            self.smax = a
+            self.__stack.append(a)
+        elif self.smax < a:
+            max_replacer = 2 * a - self.smax
+            self.__stack.append(max_replacer)
+            self.smax = a
+        else:
+            self.__stack.append(a)
 
     def Pop(self):
-        assert(len(self.__stack))
-        self.__stack.pop()
+        assert (len(self.__stack))
+        # print(self.__stack, self.smax)
+        el = self.__stack.pop()
+        if len(self.__stack) == 0:
+            self.smax = None
+            return el
+        if el < self.smax:
+            return el
+        else:
+            for_return = self.smax
+            self.smax = 2 * for_return - el
+            return for_return
 
     def Max(self):
-        assert(len(self.__stack))
-        return max(self.__stack)
+        assert (len(self.__stack))
+        return self.smax
 
 
 if __name__ == '__main__':
@@ -31,4 +51,4 @@ if __name__ == '__main__':
         elif query[0] == "max":
             print(stack.Max())
         else:
-            assert(0)
+            assert (0)
