@@ -18,11 +18,10 @@ def merge_sort(arr):
         if L[i] > R[j]:
             arr[k] = R[j]
             j += 1
-            k += 1
         else:
             arr[k] = L[i]
             i += 1
-            k += 1
+        k += 1
 
     while i < len(L):
         arr[k] = L[i]
