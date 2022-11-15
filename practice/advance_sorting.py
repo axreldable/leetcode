@@ -34,10 +34,36 @@ def merge_sort(arr):
         k += 1
 
 
+def quick_sort(arr, l, r):
+    def partition(arr, l, r):
+        p_el = arr[r]
+
+        i = l - 1
+        for j in range(l, r):
+            if arr[j] < p_el:
+                i += 1
+                tmp = arr[i]
+                arr[i] = arr[j]
+                arr[j] = tmp
+        tmp = arr[i + 1]
+        arr[i + 1] = arr[r]
+        arr[r] = tmp
+
+        return i + 1
+
+    if l >= r:
+        return
+
+    p = partition(arr, l, r)
+    quick_sort(arr, l, p - 1)
+    quick_sort(arr, p + 1, r)
+
+
 if __name__ == "__main__":
     arr = [1, 2, 3, 1, 2, 3, 4, 5, 122, 46, 78, 4, 29]
     print(arr)
-    merge_sort(arr)
+    # merge_sort(arr)
+    quick_sort(arr, 0, len(arr) - 1)
     print(arr)
 
     for l in (1, 5, 10, 15):
@@ -45,5 +71,6 @@ if __name__ == "__main__":
             arr = [randint(0, max_elem) for _ in range(l)]
             # print(arr)
             s_arr = sorted(arr)
-            merge_sort(arr)
+            # merge_sort(arr)
+            quick_sort(arr, 0, len(arr) - 1)
             assert s_arr == arr
