@@ -36,11 +36,11 @@ def merge_sort(arr):
 
 def quick_sort(arr, l, r):
     def partition(arr, l, r):
-        p_el = arr[r]
+        pivot = arr[r]
 
         i = l - 1
         for j in range(l, r):
-            if arr[j] < p_el:
+            if arr[j] < pivot:
                 i += 1
                 tmp = arr[i]
                 arr[i] = arr[j]
@@ -59,11 +59,41 @@ def quick_sort(arr, l, r):
     quick_sort(arr, p + 1, r)
 
 
+def optimized_quick_sort(arr, l, r):
+    def partition(arr, l, r):
+        pivot = arr[r]
+
+        i = k = l - 1
+        for j in range(l, r):
+            if arr[j] < pivot:
+                i += 1
+                k += 1
+                arr[k], arr[j] = arr[j], arr[k]
+                arr[k], arr[i] = arr[i], arr[k]
+            elif arr[j] == pivot:
+                k += 1
+                arr[k], arr[j] = arr[j], arr[k]
+        arr[k + 1], arr[r] = arr[r], arr[k + 1]
+
+        return i + 1, k + 1
+
+    if l >= r:
+        return
+
+    k = randint(l, r)
+    arr[l], arr[k] = arr[k], arr[l]
+
+    ll, rr = partition(arr, l, r)
+    quick_sort(arr, l, ll - 1)
+    quick_sort(arr, rr + 1, r)
+
+
 if __name__ == "__main__":
     arr = [1, 2, 3, 1, 2, 3, 4, 5, 122, 46, 78, 4, 29]
     print(arr)
     # merge_sort(arr)
-    quick_sort(arr, 0, len(arr) - 1)
+    # quick_sort(arr, 0, len(arr) - 1)
+    optimized_quick_sort(arr, 0, len(arr) - 1)
     print(arr)
 
     for l in (1, 5, 10, 15):
@@ -72,5 +102,6 @@ if __name__ == "__main__":
             # print(arr)
             s_arr = sorted(arr)
             # merge_sort(arr)
-            quick_sort(arr, 0, len(arr) - 1)
+            # quick_sort(arr, 0, len(arr) - 1)
+            optimized_quick_sort(arr, 0, len(arr) - 1)
             assert s_arr == arr
